@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Innovista</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- bootstrap link -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.rtl.min.css" 
+   integrity="sha384-PRrgQVJ8NNHGieOA1grGdCTIt4h21CzJs6SnWH4YMQ6G5F5+IEzOHz67L4SQaF0o" crossorigin="anonymous">
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="newstyles.css">
+   <link rel="icon" href="innovistalogo.jpg">
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap');
+
+body{
+  background-color: #1a1a1a;
+}
+      section {
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+      }
+
+      .card {
+          position: relative;
+          height: 450px;
+          width: 350px;
+          margin: 10px;
+          transition: ease all 2.3s;
+          perspective: 1200px;
+      }
+
+      .card:hover .cover {
+          transform: rotateX(0deg) rotateY(-180deg);
+      }
+
+      .cover {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          transform-style: preserve-3d;
+          transition: ease all 1.3s;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+      }
+
+      .cover:before {
+          content: '';
+          position: absolute;
+          border: 5px solid rgba(255, 255, 255, .5);
+          box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+          top: 20px;
+          left: 20px;
+          right: 20px;
+          bottom: 20px;
+          z-index: 2;
+          transition: ease all 2.3s;
+          transform-style: preserve-3d;
+          transform: translateZ(0px);
+      }
+
+      .cover:after {
+          content: '';
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          right: 0px;
+          bottom: 0px;
+          z-index: 2;
+          transition: ease all 1.3s;
+          background: rgba(0, 0, 0, .4);
+      }
+
+      .cover.item-a {
+          background-image: url('./MLR.jpg');
+      }
+
+      .cover #name {
+          font-weight: 600;
+          position: absolute;
+          bottom: 10px;
+          left: 30px;
+          color: rgb(255, 255, 255);
+          transform-style: preserve-3d;
+          transition: ease all 2.3s;
+          z-index: 3;
+          font-size: 2em;
+      }
+
+      .cover .price {
+          font-weight: 200;
+          position: absolute;
+          top: 25px;
+          right: 10px;
+          color: white;
+          transform-style: preserve-3d;
+          transition: ease all 2.3s;
+          z-index: 4;
+          font-size: 2em;
+      }
+
+      .card-back {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          background: #0b0f08;
+          transform-style: preserve-3d;
+          transition: ease all 1.3s;
+          transform: translateZ(-1px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          overflow-y: scroll;
+      }
+
+      .card-back a {
+          transform-style: preserve-3d;
+          transform: translateZ(-1px) rotatey(-180deg);
+          background: transparent;
+          border: 1px solid white;
+          font-weight: 50;
+          font-size: 2rem;
+          color: white;
+          padding: 0px 0px;
+          outline: none;
+          text-decoration: none;
+          margin: 15px;
+          margin-top: 35px;
+      }
+
+      .card-back a:hover {
+          color: #ffffff;
+      }
+
+      @media screen and (max-width: 768px) {
+          .card {
+              width: 100%;
+          }
+      }
+      .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      width:80px;
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 10px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .circle-username {
+      width: 50px;
+      height: 50px;
+      background-color: #4caf50;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      margin-right: 0%;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      min-width: 130px;
+      border-radius: 5px;
+      padding: 8px 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: larger;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ce4545;
+    }
+  </style>
+</head>
+<body>   
+   <!-- header section starts  -->
+   
+   <header class="header" >
+      <nav class="navbar nav-1" >
+         <section class="flex">
+            <a href="home.html" class="logo" style="display: flex; align-items:center;">
+               <img src="./innovistalogo.jpg" alt="" style="width:31px; height:31px; padding-top:0px; margin-right:5px;"> Innovista
+            </a>
+            <a href="https://www.mrce.in" class="logo" style="display: flex; align-items:center;">
+               <img src="./CLGLOGO.png" alt="" style="width:31px; height:31px; padding-top:0px; margin-right:5px;"> MRCE
+            </a>
+            <ul>
+               <li id="aa"><a href="contact.html">Contact<i class="fas fa-phone"></i></a></li>
+            </ul>
+         </section>
+      </nav>
+      <nav class="navbar nav-2">
+         <section class="flex">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div class="menu">
+               <ul>
+                  <li><a href="home.html">Home</a>
+                  </li>
+                  <li><a href="aboutus.html">About us</a>
+                  </li>
+                  <li><a href="event.html">Events</a>
+                  </li>
+                  <li><a href="https://innovista.in/">Registrations</a>
+                  </li>
+                  <!-- <li><a href="#">Contact</a> -->
+                  </li>
+                  <li><a href="faqs.html">Faq's</a></li>
+                  <li><a href="team.html">Team Members</a></li>
+                    <!-- Your other list items... -->
+                    <li class="dropdown">
+                      <a href="#">Gallery</a>
+                      <div class="dropdown-content">
+                        <a href="gallery.html">Gallery</a>
+                        <a href="magazine.html">Magazine</a>
+                      </div>
+                    </li>
+                  <li><a href="./feedback.html">Feedback</a></li>
+                &ensp; &ensp; &ensp; &ensp;
+                  
+                  <div class="dropdown">
+                    <div class="circle-username" onclick="this.parentNode.querySelector('.dropdown-content').classList.toggle('show')">
+                      U
+                    </div>
+                    <div class="dropdown-content">
+                      <a href="#">Profile</a>
+                      <a href="#">Registered Events</a>
+                      <a href="#">Settings</a>
+                      <a href="#">Logout</a>
+                    </div>
+                  </div>
+   
+               </ul>
+            </div>
+
+         </section>
+      </nav>
+   
+   </header>
+<!-- header section ends -->
+<br><br>
+<div class="alert alert-success" style="display:flex; align-items:center; justify-content:center; font-size:30px;" role="alert">
+   ADMINISTRATOR
+ </div>
+   <!-- ADMIN CARD STARTS-->
+   <div>
+
+   <section>
+      <div class="card">
+          <div class="cover item-a">
+              <p id="name">Ch.Malla Reddy</p>
+              <span class="price">CHAIRMAN</span>
+              <div class="card-back">
+                  <a href="#">
+                      Our college is a beacon of knowledge, fostering an
+                      environment that encourages growth and intellectual
+                      curiosity. Together, we strive to nurture a community
+                      that values academic excellence, innovation, and
+                      inclusivity.<br>
+                      I believe that education is the key to unlocking one's full
+                      potential, and it is our collective responsibility to
+                      empower each student with the skills they need to thrive in an ever-changing world.
+                  </a>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+         <div class="cover item-a">
+             <p id="name">Ch.Malla Reddy</p>
+             <span class="price">CHAIRMAN</span>
+             <div class="card-back">
+                 <a href="#">
+                     Our college is a beacon of knowledge, fostering an
+                     environment that encourages growth and intellectual
+                     curiosity. Together, we strive to nurture a community
+                     that values academic excellence, innovation, and
+                     inclusivity.<br>
+                     I believe that education is the key to unlocking one's full
+                     potential, and it is our collective responsibility to
+                     empower each student with the skills they need to thrive in an ever-changing world.
+                 </a>
+             </div>
+         </div>
+     </div>
+     <div class="card">
+      <div class="cover item-a">
+          <p id="name">Ch.Malla Reddy</p>
+          <span class="price">CHAIRMAN</span>
+          <div class="card-back">
+              <a href="#">
+                  Our college is a beacon of knowledge, fostering an
+                  environment that encourages growth and intellectual
+                  curiosity. Together, we strive to nurture a community
+                  that values academic excellence, innovation, and
+                  inclusivity.<br>
+                  I believe that education is the key to unlocking one's full
+                  potential, and it is our collective responsibility to
+                  empower each student with the skills they need to thrive in an ever-changing world.
+              </a>
+          </div>
+      </div>
+  </div>
+  <!-- add any no of cards for administration-->
+
+   <div class="card">
+       <div class="cover item-a">
+           <p id="name">Ch.Malla Reddy</p>
+           <span class="price">CHAIRMAN</span>
+           <div class="card-back">
+               <a href="#">
+                   Our college is a beacon of knowledge, fostering an
+                   environment that encourages growth and intellectual
+                   curiosity. Together, we strive to nurture a community
+                   that values academic excellence, innovation, and
+                   inclusivity.<br>
+                   I believe that education is the key to unlocking one's full
+                   potential, and it is our collective responsibility to
+                   empower each student with the skills they need to thrive in an ever-changing world.
+               </a>
+           </div>
+       </div>
+   </div>
+   <div class="card">
+      <div class="cover item-a">
+          <p id="name">Ch.Malla Reddy</p>
+          <span class="price">CHAIRMAN</span>
+          <div class="card-back">
+              <a href="#">
+                  Our college is a beacon of knowledge, fostering an
+                  environment that encourages growth and intellectual
+                  curiosity. Together, we strive to nurture a community
+                  that values academic excellence, innovation, and
+                  inclusivity.<br>
+                  I believe that education is the key to unlocking one's full
+                  potential, and it is our collective responsibility to
+                  empower each student with the skills they need to thrive in an ever-changing world.
+              </a>
+          </div>
+      </div>
+  </div>
+  <div class="card">
+   <div class="cover item-a">
+       <p id="name">Ch.Malla Reddy</p>
+       <span class="price">CHAIRMAN</span>
+       <div class="card-back">
+           <a href="#">
+               Our college is a beacon of knowledge, fostering an
+               environment that encourages growth and intellectual
+               curiosity. Together, we strive to nurture a community
+               that values academic excellence, innovation, and
+               inclusivity.<br>
+               I believe that education is the key to unlocking one's full
+               potential, and it is our collective responsibility to
+               empower each student with the skills they need to thrive in an ever-changing world.
+           </a>
+       </div>
+   </div>
+</div>
+  <!-- add any no of cards for HEAD OF ASSOCIATION-->
+
+</section>
+
+<br><br>
+<div class="alert alert-success" style="display:flex; align-items:center; justify-content:center; font-size:30px;" role="alert">
+    HEAD OF THE DEPARTMENT
+</div>
+
+<section>
+   <div class="card">
+       <div class="cover item-a">
+           <p id="name">Ch.Malla Reddy</p>
+           <span class="price">CHAIRMAN</span>
+           <div class="card-back">
+               <a href="#">
+                   Our college is a beacon of knowledge, fostering an
+                   environment that encourages growth and intellectual
+                   curiosity. Together, we strive to nurture a community
+                   that values academic excellence, innovation, and
+                   inclusivity.<br>
+                   I believe that education is the key to unlocking one's full
+                   potential, and it is our collective responsibility to
+                   empower each student with the skills they need to thrive in an ever-changing world.
+               </a>
+           </div>
+       </div>
+   </div>
+</section>
+
+<br><br>
+<div class="alert alert-success" style="display:flex; align-items:center; justify-content:center; font-size:30px;" role="alert">
+   HEADS OF ASSOCIATION
+ </div>
+<section>
+
+   <div class="card">
+      <div class="cover item-a">
+          <p id="name">Ch.Malla Reddy</p>
+          <span class="price">CHAIRMAN</span>
+          <div class="card-back">
+              <a href="#">
+                  Our college is a beacon of knowledge, fostering an
+                  environment that encourages growth and intellectual
+                  curiosity. Together, we strive to nurture a community
+                  that values academic excellence, innovation, and
+                  inclusivity.<br>
+                  I believe that education is the key to unlocking one's full
+                  potential, and it is our collective responsibility to
+                  empower each student with the skills they need to thrive in an ever-changing world.
+              </a>
+          </div>
+      </div>
+  </div>
+  <div class="card">
+   <div class="cover item-a">
+       <p id="name">Ch.Malla Reddy</p>
+       <span class="price">CHAIRMAN</span>
+       <div class="card-back">
+           <a href="#">
+               Our college is a beacon of knowledge, fostering an
+               environment that encourages growth and intellectual
+               curiosity. Together, we strive to nurture a community
+               that values academic excellence, innovation, and
+               inclusivity.<br>
+               I believe that education is the key to unlocking one's full
+               potential, and it is our collective responsibility to
+               empower each student with the skills they need to thrive in an ever-changing world.
+           </a>
+       </div>
+   </div>
+</div>
+<div class="card">
+    <div class="cover item-a">
+        <p id="name">Ch.Malla Reddy</p>
+        <span class="price">CHAIRMAN</span>
+        <div class="card-back">
+            <a href="#">
+                Our college is a beacon of knowledge, fostering an
+                environment that encourages growth and intellectual
+                curiosity. Together, we strive to nurture a community
+                that values academic excellence, innovation, and
+                inclusivity.<br>
+                I believe that education is the key to unlocking one's full
+                potential, and it is our collective responsibility to
+                empower each student with the skills they need to thrive in an ever-changing world.
+            </a>
+        </div>
+    </div>
+ </div>
+ <div class="card">
+    <div class="cover item-a">
+        <p id="name">Ch.Malla Reddy</p>
+        <span class="price">CHAIRMAN</span>
+        <div class="card-back">
+            <a href="#">
+                Our college is a beacon of knowledge, fostering an
+                environment that encourages growth and intellectual
+                curiosity. Together, we strive to nurture a community
+                that values academic excellence, innovation, and
+                inclusivity.<br>
+                I believe that education is the key to unlocking one's full
+                potential, and it is our collective responsibility to
+                empower each student with the skills they need to thrive in an ever-changing world.
+            </a>
+        </div>
+    </div>
+ </div>
+ <div class="card">
+    <div class="cover item-a">
+        <p id="name">Ch.Malla Reddy</p>
+        <span class="price">CHAIRMAN</span>
+        <div class="card-back">
+            <a href="#">
+                Our college is a beacon of knowledge, fostering an
+                environment that encourages growth and intellectual
+                curiosity. Together, we strive to nurture a community
+                that values academic excellence, innovation, and
+                inclusivity.<br>
+                I believe that education is the key to unlocking one's full
+                potential, and it is our collective responsibility to
+                empower each student with the skills they need to thrive in an ever-changing world.
+            </a>
+        </div>
+    </div>
+ </div>
+
+
+  <!-- add any no of cards for Association Faculty-->
+</section>
+<br>
+<div class="alert alert-success" style="display:flex; align-items:center; justify-content:center; font-size:30px;" role="alert">
+    ASSOCIATION FACULTY
+  </div>
+
+
+
+
+
+<section>
+    <style>
+        .container{
+            padding: 1em 0;
+            float: left;
+            width: 40%;
+          }
+          @media screen and (max-width: 640px){
+            .container{
+              display: block;
+              width: 100%;
+            }
+          }
+          
+          @media screen and (min-width: 900px){
+            .container{
+              width: 33.33333%;
+            }
+          }
+          
+          .container .title{
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 10px;
+          }
+          
+          .content {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+            overflow: hidden;
+          }
+          
+          .content .content-overlay {
+            background: rgba(0,0,0,0.7);
+            position: absolute;
+            height: 99%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0;
+            -webkit-transition: all 0.4s ease-in-out 0s;
+            -moz-transition: all 0.4s ease-in-out 0s;
+            transition: all 0.4s ease-in-out 0s;
+          }
+          
+          .content:hover .content-overlay{
+            opacity: 1;
+          }
+          
+          .content-image{
+            width: 100%;
+            height: 65vh;
+          }
+          .content-details {
+            position: absolute;
+            text-align: center;
+            padding-left: 1em;
+            padding-right: 1em;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            -moz-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+          }
+          
+          .content:hover .content-details{
+            top: 50%;
+            left: 50%;
+            opacity: 1;
+          }
+        
+          
+          .content-details p{
+            color: #fff;
+            font-size: 1.8em;
+          }
+          
+          .fadeIn-bottom{
+            top: 80%;
+          }
+          
+          .fadeIn-top{
+            top: 20%;
+          }
+          
+          .fadeIn-left{
+            left: 20%;
+          }
+          
+          .fadeIn-right{
+            left: 80%;
+          }
+          .container h2{
+            color: white;
+          }
+          .container h3{
+            color: RED;
+            
+          }
+    </style>
+
+    <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay"></div>
+            <img class="content-image" src="./Facultypics/radhakrishna.jpg" alt="">
+            <div class="content-details fadeIn-top">
+              <h2 class="content-title">Mr. Radhakrishnan</h2>
+              <h3 class="content-title">Assistant Professor</h3>
+              <p>Our technical events will equip you with the skills and knowledge to tackle complex challenges,
+                 while our non-technical events will cultivate your creativity and problem-solving abilities. 
+                 And if you're ready to put your skills to the test, our hackathons will provide you with an 
+                 exciting platform to collaborate, innovate, and make a lasting impact.
+            </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay">
+            </div>
+            <img class="content-image" src="./Facultypics/amulya.jpg" alt="">
+            <div class="content-details fadeIn-bottom">
+              <h2 class="content-title">Ms. P. Amulya</h2>
+              <h3 class="content-title">Assistant Professor</h3>
+              <p class="content-text">The hub's events, ranging from technical coding challenges to 
+                creative design competitions, provide a platform for you to showcase your skills, test your ideas, 
+                and collaborate with others. Whether you're a seasoned programmer or a complete novice,
+                 the Innovista hub welcomes everyone with open arms.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+
+      
+      <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay"></div>
+            <img class="content-image" src="./Facultypics/swathi.jpg" alt="">
+            <div class="content-details fadeIn-left">
+              <h2 class="content-title">Mrs. B. Swathi
+            </h2>
+            <h3 class="content-title">Assistant Professor</h3>
+              <p>
+                The hub's events, from technical workshops to entrepreneurial bootcamps, provide the tools, 
+                resources, and mentorship you need to bring your innovations to life.
+Don't be afraid to take risks, experiment with new ideas, and push the boundaries of what you think is possible.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay"></div>
+            <h2 class="content-title">Ms. P. Amulya</h2>
+
+            <img class="content-image" src="https://source.unsplash.com/HkTMcmlMOUQ" alt="">
+            <div class="content-details fadeIn-right">
+              <h3>This is a title</h3>
+              <p>This is a short description</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay"></div>
+            <h2 class="content-title">Ms. P. Amulya</h2>
+
+            <img class="content-image" src="https://source.unsplash.com/HkTMcmlMOUQ" alt="">
+            <div class="content-details fadeIn-top fadeIn-left">
+              <h3>This is a title</h3>
+              <p>This is a short description</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay"></div>
+            <h2 class="content-title">Ms. P. Amulya</h2>
+
+            <img class="content-image" src="https://source.unsplash.com/HkTMcmlMOUQ" alt="">
+            <div class="content-details fadeIn-top fadeIn-right">
+              <h3>This is a title</h3>
+              <p>This is a short description</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay"></div>
+            <h2 class="content-title">Ms. P. Amulya</h2>
+
+            <img class="content-image" src="https://source.unsplash.com/HkTMcmlMOUQ" alt="">
+            <div class="content-details fadeIn-bottom fadeIn-left">
+              <h3>This is a title</h3>
+              <p>This is a short description</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="content">
+          
+            <div class="content-overlay"></div>
+            <h2 class="content-title">Ms. P. Amulya</h2>
+
+            <img class="content-image" src="https://source.unsplash.com/HkTMcmlMOUQ" alt="">
+            <div class="content-details fadeIn-bottom fadeIn-right">
+              <h3>This is a title</h3>
+              <p>This is a short description</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+
+</section>
+
+</div>
+
+   <!-- ADMIN CARD ENDS-->
+   
+   
+   
+<!-- footer section starts  -->
+
+<footer class="footer" id="footer">
+   
+   <section class="flex">
+      
+      <div class="box">
+         <a href="#footer"><span><h2>Follow Us On</h2></span></a>
+         <a href="https://instagram.com/innovista_hub.ds?igshid=OGQ5ZDc2ODk2ZA=="><i class="fab fa-instagram"></i><span>Instagram</span></a>
+         <a href="https://www.linkedin.com/company/innovistahub/" target="_blank"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+         <a href="mailto:innovistahub@gmail.com"><i class="fas fa-envelope"></i><span>innovistahub@gmail.com</span></a>
+         <a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i><span>Medchal, Hyderabad, 500100</span></a>
+      </div>
+
+      <div class="box">
+
+         <a href="#footer"><span> <h2>Useful Links</h2></span></a>
+         <a href="./index.html"><span>Home</span></a>
+         <a href="./aboutus.html"><span>About Us</span></a>
+         <a href="https://innovista.in/event_registration/"><span>Registration</span></a>
+         <a href="./faqs.html"><span>Faq's</span></a>
+         <a href="./feedback.html"><span>Feedback</span></a>
+         <a href="https://innovista.in/administration"><span>Admin Login</span></a>
+      </div>
+
+      <div>
+         <div class="box">
+            <a href="#footer"><span><h2>Route Map</h2></span></a>
+         </div>
+         <div class="container">
+            <div class="widget-item">
+               <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3803.8913313119233!2d78.45716616394729!3d17.56035972770396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sMalla+Reddy+College+Of+Engineering+MRCE%2C+Maisammaguda%2C+Dullapally%2C+Hyderabad%2C+Telangana!5e0!3m2!1sen!2sin!4v1528523164515"
+               width="300" height="200" frameborder="1" style="border:1px;" allowfullscreen="">
+               </iframe>
+            </div>
+         </div>
+      </div>
+   </section>
+   <div class="credit">&copy; copyright @ 2023 by <span>innovista.in</span> | all rights reserved!</div>
+</footer>
+<!-- footer section ends -->
+
+
+<!-- custom js file link  -->
+<script src="newscript.js"></script>
+
+</body>
+</html>

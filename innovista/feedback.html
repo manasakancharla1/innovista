@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Rating Innovista</title>
+    <link rel="stylesheet" href="newstyles.css">
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+
+
+
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body{
+      background-color: #1a1a1a;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    div.container {
+      width: 100%;
+      max-width: 600px;
+      background: #111;
+      padding: 20px 10px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 20px; /* Adjust the top margin as needed */
+    }
+
+    img {
+      width: 75%;
+    }
+
+    .container .post {
+      display: none;
+    }
+
+    .container .text {
+      font-size: 25px;
+      color: white;
+      font-weight: 500;
+    }
+
+    .container .edit {
+      position: relative;
+      right: 10px;
+      top: 5px;
+      font-size: 18px;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .container .edit:hover {
+      text-decoration: underline;
+    }
+
+    .container .star-widget input {
+      display: none;
+    }
+
+    .star-widget label {
+        font-size: 5vw; /* Set the font size as a percentage of the viewport width */
+        color: white;
+        padding: 10px;
+        float: right;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .star-widget label {
+          font-size: 8vw; /* Adjust the font size for smaller screens */
+        }
+      }
+      
+      @media only screen and (min-width: 601px) and (max-width: 900px) {
+        .star-widget label {
+          font-size: 6vw; /* Adjust the font size for medium-sized screens */
+        }
+      }
+      @media only screen and (max-width: 600px) {
+        .star-widget label {
+          font-size: 8vw; /* Adjust the font size for smaller screens */
+        }
+    
+        .container {
+          padding: 10px; /* Adjust padding for smaller screens */
+        }
+      }
+
+    
+
+    input:not(:checked)~label:hover,
+    input:not(:checked)~label:hover~label {
+      color: #fd4;
+    }
+
+    input:checked~label {
+      color: #fd4;
+    }
+
+    input#rate-5:checked~label {
+      color: #fe7;
+      text-shadow: 0 0 20px #952;
+    }
+
+    #rate-1:checked~form header:before {
+      content: "I just hate it ";
+    }
+
+    #rate-2:checked~form header:before {
+      content: "I don't like it ";
+    }
+
+    #rate-3:checked~form header:before {
+      content: "It is awesome ";
+    }
+
+    #rate-4:checked~form header:before {
+      content: "I just like it ";
+    }
+
+    #rate-5:checked~form header:before {
+      content: "I just love it ";
+    }
+
+    .container form {
+      display: none;
+    }
+
+    input:checked~form {
+      display: block;
+    }
+
+    form header {
+      width: 100%;
+      font-size: 25px;
+      color: #fe7;
+      font-weight: 500;
+      margin: 5px 0 20px 0;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    form .btn{
+        position: relative;
+        padding: 1em 1.5em;
+        color: #fff;
+        font-size:1.15rem;
+        border-radius: 100vmax;
+        background-color: transparent;
+        border: 2px solid #fff;
+        text-transform: uppercase;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    form .btn button:hover {
+      background: #1b1b1b;
+    }
+
+    span {
+      position: absolute;
+      border-radius: 50%;
+      font-size: 10px;
+      opacity: 0.5;
+      width: 20em;
+      height: 20em;
+      background: linear-gradient(90deg, #0162c8, #55e7fc);
+      transform: translate(-50%, -50%) scale(0);
+      animation: animate 1s linear infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes animate {
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <img src="./innovistalogo.jpg" alt>
+      <div class="post">
+        <div class="text">Thanks for rating us!</div>
+        <div class="edit">
+          <a href="home.html" class="edit">
+            <button class="btn">Back</button>
+          </div>
+        </div>
+        <div class="star-widget">
+          <input type="radio" name="rate" id="rate-5">
+          <label for="rate-5" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-4">
+          <label for="rate-4" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-3">
+          <label for="rate-3" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-2">
+          <label for="rate-2" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-1">
+          <label for="rate-1" class="fas fa-star"></label>
+          <form action="#">
+            <header></header>
+            <div>
+              <button type="submit" class="btn">SUBMIT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <script>
+    const btn = document.querySelector("button");
+    const post = document.querySelector(".post");
+    const widget = document.querySelector(".star-widget");
+    const editBtn = document.querySelector(".edit");
+    btn.onclick = () => {
+      widget.style.display = "none";
+      post.style.display = "block";
+      editBtn.onclick = () => {
+        widget.style.display = "block";
+        post.style.display = "none";
+      }
+      return false;
+    }
+
+    
+
+    const button = document.querySelector(".btn");
+
+button.addEventListener("click", drawRipple);
+
+function drawRipple(event) {
+  const x = event.clientX - event.target.offsetLeft;
+  const y = event.clientY - event.target.offsetTop;
+
+  const ripples = document.createElement("span");
+  ripples.style.left = x + "px";
+  ripples.style.top = y + "px";
+
+  this.appendChild(ripples);
+
+  setTimeout(() => {
+    ripples.remove();
+  }, 1000);
+}
+  </script>
+
+    </body>
+
+  </html>
