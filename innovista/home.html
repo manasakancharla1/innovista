@@ -216,6 +216,17 @@ body{
     .dropdown-content a:hover {
       background-color: #ce4545;
     }
+         @media (max-width: 768px) {
+    .circle-username {
+      font-size: 18px; /* Adjust font size for smaller screens */
+    }
+
+    .dropdown-content {
+      right: 0; /* Align dropdown to the right for smaller screens */
+      left: auto;
+       top: 0;
+    }
+  }
   </style>
 </head>
 <body>   
@@ -263,10 +274,8 @@ body{
                   <li><a href="./feedback.html">Feedback</a></li>
                 &ensp; 
                   
-                  <li class="dropdown" style="display: flex;justify-content: left;align-items:end">
-              <div class="circle-username" onclick="this.parentNode.querySelector('.dropdown-content').classList.toggle('show')">
-                U
-              </div>
+                <li class="dropdown" style="margin-left:90%">
+              <div class="circle-username" onclick="toggleDropdown(this)">U</div>
               <div class="dropdown-content">
                 <a href="#">Profile</a>
                 <a href="#">Registered Events</a>
@@ -837,6 +846,12 @@ Don't be afraid to take risks, experiment with new ideas, and push the boundarie
 
 
 <!-- custom js file link  -->
+   <script>
+  function toggleDropdown(button) {
+    var dropdown = button.parentNode.querySelector('.dropdown-content');
+    dropdown.classList.toggle('show');
+  }
+</script>
 <script src="newscript.js"></script>
 
 </body>
