@@ -419,8 +419,9 @@
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="password">
-          </div>
+            <input type="password" id="password" placeholder="Re-Enter Password">
+            <i id="togglePassword" onclick="togglePasswordVisibility()"></i>
+        </div>
 
           <input type="submit" value="Login" class="btn solid" />
         </form>
@@ -440,18 +441,20 @@
             <i class="fas fa-envelope"></i>
             <input type="email" placeholder="Email" />
           </div>
-          <div class="input-field">
+           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" id="password" oninput="checkPasswordStrength()" placeholder="Enter Password">
+            <i class="fas fa-eye" id="togglePassword" onclick="togglePasswordVisibility()"></i>
             <div id="password-strength"></div>
             <div class="strength-bar-container">
-              <div id="strength-bar" class="strength-bar"></div>
+                <div id="strength-bar" class="strength-bar"></div>
             </div>
-          </div>
-          <div class="input-field">
+        </div>
+        <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" id="password" placeholder="Re-Enter Password">
-          </div>
+            <i  id="togglePassword" onclick="togglePasswordVisibility()"></i>
+        </div>
 
           <input type="submit" class="btn" value="Sign up" />
         </form>
