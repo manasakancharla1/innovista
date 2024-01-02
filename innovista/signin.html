@@ -488,55 +488,78 @@
       </div>
     </div>
   </div>
-
   <script>
     function checkPasswordStrength() {
-      var password = document.getElementById('password').value;
+      var password = document.getElementById('password').value
       var strengthIndicator = document.getElementById('password-strength');
       var strengthBar = document.getElementById('strength-bar');
-
-      strengthIndicator.innerHTML = '';  // Reset the indicator
-      strengthBar.style.width = '0%';    // Reset the strength bar
-
-      // Password strength rules (you can customize these)
+  
+      // Reset the indicator and strength bar
+      strengthIndicator.innerHTML = '';
+      strengthBar.style.width = '0%';
+  
+      // Password strength rules (customize as needed)
       var minLength = 8;
       var hasUpperCase = /[A-Z]/.test(password);
       var hasLowerCase = /[a-z]/.test(password);
       var hasDigit = /\d/.test(password);
       var hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
-
+  
       var strength = 0;
-
+  
       if (password.length >= minLength) {
         strength++;
       }
-
+  
       if (hasUpperCase) {
         strength++;
       }
-
+  
       if (hasLowerCase) {
         strength++;
       }
-
+  
       if (hasDigit) {
         strength++;
       }
-
+  
       if (hasSpecialChar) {
         strength++;
       }
-
-      // Update the strength bar width and gradient based on the password strength
+  
+      // Update the strength bar width and gradient
       if (strength === 1) {
         strengthBar.style.background = `linear-gradient(to right, red 0%, orange 100%)`;
       } else {
         strengthBar.style.background = `linear-gradient(to right, red 0%, green ${100 - (strength / 5) * 100}%, green 100%)`;
       }
-
+  
       strengthBar.style.width = (strength / 5) * 100 + '%';
+  
+      // Check if passwords match for sign-up form
+      if (reEnterPassword && password === reEnterPassword) {
+        strengthIndicator.innerHTML = 'Passwords match';
+      } else if (reEnterPassword) {
+        strengthIndicator.innerHTML = 'Passwords do not match';
+      }
+    }
+  
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("password");
+      var togglePasswordIcon = document.getElementById("togglePassword");
+  
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePasswordIcon.classList.remove("fa-eye");
+        togglePasswordIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        togglePasswordIcon.classList.remove("fa-eye-slash");
+        togglePasswordIcon.classList.add("fa-eye");
+      }
     }
   </script>
+  
 
 
   <script>
@@ -553,38 +576,7 @@
     });
 
   </script>
-  <script>
-    function togglePasswordVisibility() {
-        var passwordInput = document.getElementById("password");
-        var togglePasswordIcon = document.getElementById("togglePassword");
 
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            togglePasswordIcon.classList.remove("fa-eye");
-            togglePasswordIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordInput.type = "password";
-            togglePasswordIcon.classList.remove("fa-eye-slash");
-            togglePasswordIcon.classList.add("fa-eye");
-        }
-    }
-</script>
-<script>
-  function togglePasswordVisibility(inputId) {
-      var passwordInput = document.getElementById(inputId);
-      var togglePasswordIcon = document.getElementById("togglePassword");
-
-      if (passwordInput.type === "password") {
-          passwordInput.type = "text";
-          togglePasswordIcon.classList.remove("fa-eye");
-          togglePasswordIcon.classList.add("fa-eye-slash");
-      } else {
-          passwordInput.type = "password";
-          togglePasswordIcon.classList.remove("fa-eye-slash");
-          togglePasswordIcon.classList.add("fa-eye");
-      }
-  }
-</script>
 </body>
 
 </html>
