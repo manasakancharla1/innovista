@@ -7,6 +7,8 @@
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="./img/innovistalogo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
   <title>Sign up & Login Innovista</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
@@ -404,6 +406,153 @@
       width: 0;
       transition: width 0.3s, background 0.3s;
     }
+
+    /* Import Google font - Poppins */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #11131e;
+    }
+
+    .wrapper {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      justify-content: center;
+    }
+
+    .wrapper .input-fields {
+      width: 100%;
+      position: relative;
+    }
+
+    .input-fields input {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      font-size: 1.3rem;
+      border-radius: 5px;
+      border: 1px solid #999;
+    }
+
+    .input-fields .eye {
+      right: 20px;
+      top: 50%;
+      font-size: 1.2rem;
+      color: #999;
+      cursor: pointer;
+      position: absolute;
+      transform: translateY(-50%);
+    }
+
+    .wrapper .content {
+      margin: 20px 0 10px;
+    }
+
+    .content p {
+      color: #333;
+      font-size: 1.3rem;
+    }
+
+    .content .requirement-list {
+      margin-top: 20px;
+    }
+
+    .requirement-list li {
+      font-size: 1.3rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .requirement-list li .eye {
+      width: 20px;
+      color: #aaa;
+      font-size: 0.6rem;
+    }
+
+    .requirement-list li.valid .eye {
+      font-size: 1.2rem;
+      color: #4285F4;
+    }
+
+    .requirement-list li span {
+      margin-left: 12px;
+      color: #333;
+    }
+
+    .requirement-list li.valid span {
+      color: #999;
+    }
+
+    @media screen and (max-width: 500px) {
+
+      body,
+      .wrapper {
+        padding: 15px;
+      }
+
+      .wrapper .input-fields {
+        height: 55px;
+      }
+
+      .input-fields input,
+      .content p {
+        font-size: 1.15rem;
+      }
+
+      .input-fields i,
+      .requirement-list li {
+        font-size: 1.1rem;
+      }
+
+      .requirement-list li span {
+        margin-left: 7px;
+      }
+    }
+
+    .input-fields {
+      max-width: 380px;
+      width: 100%;
+      background-color: #f0f0f0;
+      margin: 10px 0;
+      height: 55px;
+      border-radius: 55px;
+      display: grid;
+      grid-template-columns: 15% 85%;
+      padding: 0 0.4rem;
+      position: relative;
+    }
+
+    .input-fields input {
+      background: none;
+      outline: none;
+      border: none;
+      line-height: 1;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .input-fields input::placeholder {
+      color: #aaa;
+      font-weight: 500;
+    }
   </style>
 </head>
 
@@ -420,8 +569,7 @@
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" id="password" placeholder="Re-Enter Password">
-            <i id="togglePasswordLogin" onclick="togglePasswordVisibility('password')"></i>
-        </div>
+          </div>
 
           <input type="submit" value="Login" class="btn solid" />
         </form>
@@ -444,18 +592,46 @@
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" id="password" oninput="checkPasswordStrength()" placeholder="Enter Password">
-            <i id="togglePasswordSignup" onclick="togglePasswordVisibility('signupPassword')"></i>
-            <div id="password-strength"></div>
-            <div class="strength-bar-container">
-                <div id="strength-bar" class="strength-bar"></div>
+
+          </div>
+          <div class="wrapper">
+            <div class="input-fields">
+              <i class="fas fa-lock"
+                style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
+              <input type="password" placeholder="Enter password">
+              <i class="fa-solid fa-eye eye"></i>
             </div>
-        </div><br>
-        <div class="input-field">
+            <div class="content" style="display: none;">
+              <p>Password must contains</p>
+              <ul class="requirement-list">
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 8 characters length</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 number (0...9)</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 lowercase letter (a...z)</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 special symbol (!...$)</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 uppercase letter (A...Z)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" id="password" placeholder="Re-Enter Password">
-            <i  id="togglePassword" onclick="togglePasswordVisibility()"></i>
-        </div>
-        
+          </div>
+
           <input type="submit" class="btn" value="Sign up" />
         </form>
       </div>
@@ -488,54 +664,106 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const passwordInput = document.querySelector(".input-fields input");
+    const eyeIcon = document.querySelector(".input-fields .eye");
+    const requirementList = document.querySelectorAll(".requirement-list li");
+
+    // An array of password requirements with corresponding 
+    // regular expressions and index of the requirement list item
+    const requirements = [
+      { regex: /.{8,}/, index: 0 }, // Minimum of 8 characters
+      { regex: /[0-9]/, index: 1 }, // At least one number
+      { regex: /[a-z]/, index: 2 }, // At least one lowercase letter
+      { regex: /[^A-Za-z0-9]/, index: 3 }, // At least one special character
+      { regex: /[A-Z]/, index: 4 }, // At least one uppercase letter
+    ]
+
+    passwordInput.addEventListener("keyup", (e) => {
+      requirements.forEach(item => {
+        // Check if the password matches the requirement regex
+        const isValid = item.regex.test(e.target.value);
+        const requirementItem = requirementList[item.index];
+
+        // Updating class and icon of requirement item if requirement matched or not
+        if (isValid) {
+          requirementItem.classList.add("valid");
+          requirementItem.firstElementChild.className = "fa-solid fa-check";
+        } else {
+          requirementItem.classList.remove("valid");
+          requirementItem.firstElementChild.className = "fa-solid fa-circle";
+        }
+      });
+    });
+
+    eyeIcon.addEventListener("click", () => {
+      // Toggle the password input type between "password" and "text"
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+
+
+
+      // Update the eye icon class based on the password input type
+      eyeIcon.className = `fa-solid fa-eye${passwordInput.type === "password" ? "" : "-slash eye"}`;
+      if (passwordInput.type === "text") {
+        eyeIcon.className = `fa-solid fa-eye eye`;
+      }       // Update the eye icon class based on the password input type
+      else {
+        eyeIcon.className = `fa-solid fa-eye-slash eye`;
+      }
+
+    });
+
+  </script>
+
   <script>
     function checkPasswordStrength() {
       var password = document.getElementById('password').value
       var strengthIndicator = document.getElementById('password-strength');
       var strengthBar = document.getElementById('strength-bar');
-  
+
       // Reset the indicator and strength bar
       strengthIndicator.innerHTML = '';
       strengthBar.style.width = '0%';
-  
+
       // Password strength rules (customize as needed)
       var minLength = 8;
       var hasUpperCase = /[A-Z]/.test(password);
       var hasLowerCase = /[a-z]/.test(password);
       var hasDigit = /\d/.test(password);
       var hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
-  
+
       var strength = 0;
-  
+
       if (password.length >= minLength) {
         strength++;
       }
-  
+
       if (hasUpperCase) {
         strength++;
       }
-  
+
       if (hasLowerCase) {
         strength++;
       }
-  
+
       if (hasDigit) {
         strength++;
       }
-  
+
       if (hasSpecialChar) {
         strength++;
       }
-  
+
       // Update the strength bar width and gradient
       if (strength === 1) {
         strengthBar.style.background = `linear-gradient(to right, red 0%, orange 100%)`;
       } else {
         strengthBar.style.background = `linear-gradient(to right, red 0%, green ${100 - (strength / 5) * 100}%, green 100%)`;
       }
-  
+
       strengthBar.style.width = (strength / 5) * 100 + '%';
-  
+
       // Check if passwords match for sign-up form
       if (reEnterPassword && password === reEnterPassword) {
         strengthIndicator.innerHTML = 'Passwords match';
@@ -543,23 +771,10 @@
         strengthIndicator.innerHTML = 'Passwords do not match';
       }
     }
-  
-    function togglePasswordVisibility(passwordId) {
-    var passwordInput = document.getElementById(passwordId);
-    var togglePasswordIcon = document.getElementById("togglePassword");
 
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePasswordIcon.classList.remove("fa-eye");
-        togglePasswordIcon.classList.add("fa-eye-slash");
-    } else {
-        passwordInput.type = "password";
-        togglePasswordIcon.classList.remove("fa-eye-slash");
-        togglePasswordIcon.classList.add("fa-eye");
-    }
-}
+
   </script>
-  
+
 
 
   <script>
