@@ -21,7 +21,7 @@
 
     body,
     input {
-      font-family: "Poppins", sans-serif;
+      font-family: 'Times New Roman', Times, serif;
     }
 
     .container {
@@ -415,7 +415,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: 'Times New Roman', Times, serif;
     }
 
     body {
@@ -451,6 +451,16 @@
     }
 
     .input-fields .eye {
+      right: 20px;
+      top: 50%;
+      font-size: 1.2rem;
+      color: #999;
+      cursor: pointer;
+      position: absolute;
+      transform: translateY(-50%);
+    }
+
+    .input-fieldss .eye {
       right: 20px;
       top: 50%;
       font-size: 1.2rem;
@@ -561,6 +571,34 @@
       font-weight: 500;
     }
 
+    .input-fieldss {
+      max-width: 380px;
+      width: 100%;
+      background-color: #f0f0f0;
+      margin: 10px 0;
+      height: 55px;
+      border-radius: 55px;
+      display: grid;
+      grid-template-columns: 15% 85%;
+      padding: 0 0.4rem;
+      position: relative;
+    }
+
+    .input-fieldss input {
+      background: none;
+      outline: none;
+      border: none;
+      line-height: 1;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .input-fieldss input::placeholder {
+      color: #aaa;
+      font-weight: 500;
+    }
+
     .pass .content {
       box-shadow: -1px 0px 20px 20px rgb(171 171 171 / 20%);
       padding: 15px;
@@ -591,7 +629,7 @@
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Email / Roll Number" />
           </div>
-          <div class="input-fields">
+          <div class="input-fieldss">
             <i class="fas fa-lock"
               style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
             <input type="password" placeholder="Enter Password">
@@ -732,8 +770,30 @@
       }
 
     });
-
   </script>
+
+  <script>
+    const passwordInputs = document.querySelector(".input-fieldss input");
+    const eyeIcons = document.querySelector(".input-fieldss .eye");
+    eyeIcons.addEventListener("click", () => {
+      // Toggle the password input type between "password" and "text"
+      passwordInputs.type = passwordInputs.type === "password" ? "text" : "password";
+
+
+
+      // Update the eye icon class based on the password input type
+      eyeIcons.className = `fa-solid fa-eye${passwordInputs.type === "password" ? "" : "-slash eye"}`;
+      if (passwordInputs.type === "text") {
+
+        eyeIcons.className = `fa-solid fa-eye eye`;
+      }       // Update the eye icon class based on the password input type
+      else {
+        eyeIcons.className = `fa-solid fa-eye-slash eye`;
+      }
+
+    });
+  </script>
+
 
   <script>
     function checkPasswordStrength() {
