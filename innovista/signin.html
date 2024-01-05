@@ -718,60 +718,76 @@
 
   <script>
     function checkPasswordStrength() {
-      var password = document.getElementById('password').value
-      var strengthIndicator = document.getElementById('password-strength');
-      var strengthBar = document.getElementById('strength-bar');
+     const passwordInput = document.getElementById("password");
+  const eyeIcon = document.querySelector(".input-fields .eye");
+  const strengthIndicator = document.getElementById("password-strength");
+  const strengthBar = document.getElementById("strength-bar");
+  const reEnterPasswordInput = document.getElementById("re-enter-password");
 
-      // Reset the indicator and strength bar
-      strengthIndicator.innerHTML = '';
-      strengthBar.style.width = '0%';
+  function checkPasswordStrength() {
+    const password = passwordInput.value;
+    const reEnterPassword = reEnterPasswordInput.value;
 
-      // Password strength rules (customize as needed)
-      var minLength = 8;
-      var hasUpperCase = /[A-Z]/.test(password);
-      var hasLowerCase = /[a-z]/.test(password);
-      var hasDigit = /\d/.test(password);
-      var hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+    // Reset the indicator and strength bar
+    strengthIndicator.innerHTML = "";
+    strengthBar.style.width = "0%";
 
-      var strength = 0;
+    // Password strength rules (customize as needed)
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
 
-      if (password.length >= minLength) {
-        strength++;
-      }
+    let strength = 0;
 
-      if (hasUpperCase) {
-        strength++;
-      }
-
-      if (hasLowerCase) {
-        strength++;
-      }
-
-      if (hasDigit) {
-        strength++;
-      }
-
-      if (hasSpecialChar) {
-        strength++;
-      }
-
-      // Update the strength bar width and gradient
-      if (strength === 1) {
-        strengthBar.style.background = `linear-gradient(to right, red 0%, orange 100%)`;
-      } else {
-        strengthBar.style.background = `linear-gradient(to right, red 0%, green ${100 - (strength / 5) * 100}%, green 100%)`;
-      }
-
-      strengthBar.style.width = (strength / 5) * 100 + '%';
-
-      // Check if passwords match for sign-up form
-      if (reEnterPassword && password === reEnterPassword) {
-        strengthIndicator.innerHTML = 'Passwords match';
-      } else if (reEnterPassword) {
-        strengthIndicator.innerHTML = 'Passwords do not match';
-      }
+    if (password.length >= minLength) {
+      strength++;
     }
 
+    if (hasUpperCase) {
+      strength++;
+    }
+
+    if (hasLowerCase) {
+      strength++;
+    }
+
+    if (hasDigit) {
+      strength++;
+    }
+
+    if (hasSpecialChar) {
+      strength++;
+    }
+
+    // Update the strength bar width and gradient
+    if (strength === 1) {
+      strengthBar.style.background = `linear-gradient(to right, red 0%, orange 100%)`;
+    } else {
+      strengthBar.style.background = `linear-gradient(to right, red 0%, green ${100 - (strength / 5) * 100}%, green 100%)`;
+    }
+
+    strengthBar.style.width = (strength / 5) * 100 + "%";
+
+    // Update the eye icon color based on the strength
+    if (strength === 5) {
+      eyeIcon.style.color = "green";
+    } else {
+      eyeIcon.style.color = "red";
+    }
+
+    // Check if passwords match for sign-up form
+    if (reEnterPassword && password === reEnterPassword) {
+      strengthIndicator.innerHTML = "Passwords match";
+    } else if (reEnterPassword) {
+      strengthIndicator.innerHTML = "Passwords do not match";
+    }
+  }
+
+  passwordInput.addEventListener("input", checkPasswordStrength);
+  reEnterPasswordInput.addEventListener("input", checkPasswordStrength);
+    }
 
   </script>
 
