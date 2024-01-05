@@ -566,12 +566,12 @@
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Email / Roll Number" />
           </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="password" placeholder="Re-Enter Password">
-            <i class="fa-solid fa-eye eye"></i>
-          </div>
-
+        <div class="input-fields">
+              <i class="fas fa-lock"
+                style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
+              <input type="password" placeholder="Re-Enter password">
+              <i class="fa-solid fa-eye eye"></i>
+          
           <input type="submit" value="Login" class="btn solid" />
         </form>
 
@@ -590,16 +590,16 @@
             <i class="fas fa-envelope"></i>
             <input type="email" placeholder="Email" />
           </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="password" placeholder="Enter Password">
-            <i class="fa-solid fa-eye eye"></i>
-
-          </div>
             <div class="input-fields">
               <i class="fas fa-lock"
                 style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
               <input type="password" placeholder="Enter password">
+              <i class="fa-solid fa-eye eye"></i>
+            </div>
+           <div class="input-fields">
+              <i class="fas fa-lock"
+                style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
+              <input type="password" placeholder="Re-Enter password">
               <i class="fa-solid fa-eye eye"></i>
             </div>
           <input type="submit" class="btn" value="Sign up" />
@@ -676,10 +676,10 @@
       eyeIcon.className = `fa-solid fa-eye${passwordInput.type === "password" ? "" : "-slash eye"}`;
       if (passwordInput.type === "text") {
 
-        eyeIcon.className = `fa-solid fa-eye eye`;
+        eyeIcon.className = `fa-solid fa-eye-slash eye`;
       }       // Update the eye icon class based on the password input type
       else {
-        eyeIcon.className = `fa-solid fa-eye-slash eye`;
+        eyeIcon.className = `fa-solid fa-eye eye`;
       }
 
     });
