@@ -616,6 +616,22 @@
       justify-content: center;
       align-items: center;
     }
+    #password-strength {
+            margin-top: 3px;
+            width:200px;
+        }
+
+        .strength-low {
+            color: red;
+        }
+
+        .strength-medium {
+            color: yellow;
+        }
+
+        .strength-high {
+            color: green;
+        }
   </style>
 </head>
 
@@ -654,35 +670,11 @@
             <div class="input-fields">
               <i class="fas fa-lock"
                 style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
-              <input type="password" placeholder="Enter password">
+              <input type="password"  required oninput="checkPasswordStrength()" placeholder="Enter password">
               <i class="fa-solid fa-eye-slash eye"></i>
+              <div id="password-strength"></div>
+              </div>
             </div>
-            <div class="content" style="display: none;">
-              <p>Password must contains</p>
-              <ul class="requirement-list">
-                <li>
-                  <i class="fa-solid fa-circle"></i>
-                  <span>At least 8 characters length</span>
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle"></i>
-                  <span>At least 1 number (0...9)</span>
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle"></i>
-                  <span>At least 1 lowercase letter (a...z)</span>
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle"></i>
-                  <span>At least 1 special symbol (!...$)</span>
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle"></i>
-                  <span>At least 1 uppercase letter (A...Z)</span>
-                </li>
-              </ul>
-            </div>
-          </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" id="password" placeholder="Re-Enter Password">
@@ -796,60 +788,59 @@
 
 
   <script>
-    function checkPasswordStrength() {
-      var password = document.getElementById('password').value
-      var strengthIndicator = document.getElementById('password-strength');
-      var strengthBar = document.getElementById('strength-bar');
+     function checkPasswordStrength() {
+            var password = document.getElementById('password').value;
+            var strengthIndicator = document.getElementById('password-strength');
 
-      // Reset the indicator and strength bar
-      strengthIndicator.innerHTML = '';
-      strengthBar.style.width = '0%';
+            strengthIndicator.innerHTML = '';  // Reset the indicator
 
-      // Password strength rules (customize as needed)
-      var minLength = 8;
-      var hasUpperCase = /[A-Z]/.test(password);
-      var hasLowerCase = /[a-z]/.test(password);
-      var hasDigit = /\d/.test(password);
-      var hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+            // Password strength rules (you can customize these)
+            var minLength = 8;
+            var hasUpperCase = /[A-Z]/.test(password);
+            var hasLowerCase = /[a-z]/.test(password);
+            var hasDigit = /\d/.test(password);
+            var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-      var strength = 0;
+            var strength = 0;
 
-      if (password.length >= minLength) {
-        strength++;
-      }
+            if (password.length >= minLength) {
+                strength++;
+            }
 
-      if (hasUpperCase) {
-        strength++;
-      }
+            if (hasUpperCase) {
+                strength++;
+            }
 
-      if (hasLowerCase) {
-        strength++;
-      }
+            if (hasLowerCase) {
+                strength++;
+            }
 
-      if (hasDigit) {
-        strength++;
-      }
+            if (hasDigit) {
+                strength++;
+            }
 
-      if (hasSpecialChar) {
-        strength++;
-      }
+            if (hasSpecialChar) {
+                strength++;
+            }
 
-      // Update the strength bar width and gradient
-      if (strength === 1) {
-        strengthBar.style.background = `linear-gradient(to right, red 0%, orange 100%)`;
-      } else {
-        strengthBar.style.background = `linear-gradient(to right, red 0%, green ${100 - (strength / 5) * 100}%, green 100%)`;
-      }
-
-      strengthBar.style.width = (strength / 5) * 100 + '%';
-
+            // Update the indicator with colored lines based on the password strength
+            if (strength === 0) {
+                strengthIndicator.innerHTML = 'Password is too weak.';
+                strengthIndicator.className = 'strength-low';
+            } else if (strength <= 2) {
+                strengthIndicator.innerHTML = 'Password strength: Medium';
+                strengthIndicator.className = 'strength-medium';
+            } else {
+                strengthIndicator.innerHTML = 'Password strength: Strong';
+                strengthIndicator.className = 'strength-high';
+            }
+        }
       // Check if passwords match for sign-up form
       if (reEnterPassword && password === reEnterPassword) {
         strengthIndicator.innerHTML = 'Passwords match';
       } else if (reEnterPassword) {
         strengthIndicator.innerHTML = 'Passwords do not match';
       }
-    }
 
 
   </script>
