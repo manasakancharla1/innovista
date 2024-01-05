@@ -221,6 +221,7 @@
     .container.sign-up-mode:before {
       transform: translate(100%, -50%);
       right: 52%;
+      overflow: auto;
     }
 
     .container.sign-up-mode .left-panel .image,
@@ -425,7 +426,7 @@
       background: #11131e;
     }
 
-    .wrapper {
+    /* .wrapper {
       display: flex;
       width: 100%;
       overflow: hidden;
@@ -433,9 +434,9 @@
       background: #fff;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
       justify-content: center;
-    }
+    } */
 
-    .wrapper .input-fields {
+    .input-fields {
       width: 100%;
       position: relative;
     }
@@ -446,7 +447,7 @@
       outline: none;
       font-size: 1.3rem;
       border-radius: 5px;
-      border: 1px solid #999;
+      border: 1px solid #090101;
     }
 
     .input-fields .eye {
@@ -459,13 +460,13 @@
       transform: translateY(-50%);
     }
 
-    .wrapper .content {
-      margin: 20px 0 10px;
+    .pass .content {
+      margin: 1px 0 10px;
     }
 
-    .content p {
+    .pass .content p {
       color: #333;
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
 
     .content .requirement-list {
@@ -473,22 +474,22 @@
     }
 
     .requirement-list li {
-      font-size: 1.3rem;
+      font-size: 1.0rem;
       list-style: none;
       display: flex;
       align-items: center;
       margin-bottom: 15px;
     }
 
-    .requirement-list li .eye {
+    .requirement-list li i {
       width: 20px;
-      color: #aaa;
+      color: #ff0000;
       font-size: 0.6rem;
     }
 
-    .requirement-list li.valid .eye {
+    .requirement-list li.valid i {
       font-size: 1.2rem;
-      color: #4285F4;
+      color: #0400f2;
     }
 
     .requirement-list li span {
@@ -500,14 +501,18 @@
       color: #999;
     }
 
+    .pass {
+      width: 100%;
+    }
+
     @media screen and (max-width: 500px) {
 
       body,
-      .wrapper {
+      /* .wrapper {
         padding: 15px;
-      }
+      } */
 
-      .wrapper .input-fields {
+      .input-fields {
         height: 55px;
       }
 
@@ -524,6 +529,8 @@
       .requirement-list li span {
         margin-left: 7px;
       }
+
+
     }
 
     .input-fields {
@@ -553,6 +560,24 @@
       color: #aaa;
       font-weight: 500;
     }
+
+    .pass .content {
+      box-shadow: -1px 0px 20px 20px rgb(171 171 171 / 20%);
+      padding: 15px;
+      border: 0.1px solid #b3b3b3;
+      background: rgb(171 171 171 / 20%);
+      color: black;
+      font-weight: 600;
+    }
+
+    .pass {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -566,21 +591,19 @@
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Email / Roll Number" />
           </div>
-        <div class="input-fields">
-              <i class="fas fa-lock"
-                style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
-              <input type="password" placeholder="Re-Enter password">
-          
+          <div class="input-fields">
+            <i class="fas fa-lock"
+              style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
+            <input type="password" placeholder="Enter Password">
+            <i class="fa-solid fa-eye-slash eye"></i>
+          </div>
+
           <input type="submit" value="Login" class="btn solid" />
         </form>
 
-
-        <form action="#" class="sign-up-form">
+        <form action="#" class="sign-up-form" style="overflow-y: auto;">
           <h2 class="title">Sign up</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" />
-          </div>
+
           <div class="input-field">
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Roll Number" />
@@ -589,27 +612,56 @@
             <i class="fas fa-envelope"></i>
             <input type="email" placeholder="Email" />
           </div>
+          <div class="pass">
             <div class="input-fields">
               <i class="fas fa-lock"
                 style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
               <input type="password" placeholder="Enter password">
-              <i class="fa-solid fa-eye eye"></i>
+              <i class="fa-solid fa-eye-slash eye"></i>
             </div>
-           <div class="input-fields">
-              <i class="fas fa-lock"
-                style="text-align: center;line-height: 55px;color: #acacac; transition: 0.5s;font-size: 1.1rem;"></i>
-              <input type="password" placeholder="Re-Enter password">
+            <div class="content" style="display: none;">
+              <p>Password must contains</p>
+              <ul class="requirement-list">
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 8 characters length</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 number (0...9)</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 lowercase letter (a...z)</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 special symbol (!...$)</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle"></i>
+                  <span>At least 1 uppercase letter (A...Z)</span>
+                </li>
+              </ul>
             </div>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="Re-Enter Password">
+          </div>
+
           <input type="submit" class="btn" value="Sign up" />
         </form>
       </div>
+    </div>
+    <br><br>
 
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="content">
           <h3>New here ?</h3>
           <p>
-            Singin to be a participant in Innovista.in
+            Sign up to be a participant in Innovista.in
           </p>
           <button class="btn transparent" id="sign-up-btn">
             Sign up
@@ -674,10 +726,10 @@
       eyeIcon.className = `fa-solid fa-eye${passwordInput.type === "password" ? "" : "-slash eye"}`;
       if (passwordInput.type === "text") {
 
-        eyeIcon.className = `fa-solid fa-eye-slash eye`;
+        eyeIcon.className = `fa-solid fa-eye eye`;
       }       // Update the eye icon class based on the password input type
       else {
-        eyeIcon.className = `fa-solid fa-eye eye`;
+        eyeIcon.className = `fa-solid fa-eye-slash eye`;
       }
 
     });
